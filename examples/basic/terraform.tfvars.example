@@ -1,0 +1,28 @@
+# Example terraform.tfvars
+# Copy this file to terraform.tfvars and update with your values
+
+aws_region = "us-east-1"
+db_name    = "myapp-db"
+
+# VPC and networking (update with your actual values)
+vpc_id     = "vpc-xxxxxxxxxxxxx"
+subnet_ids = ["subnet-xxxxxxxxxxxxx", "subnet-yyyyyyyyyyyyyyy"]
+
+# ECS security group (update with your actual security group ID)
+ecs_security_group_id = "sg-xxxxxxxxxxxxx"
+
+# Database password (use AWS Secrets Manager in production)
+master_password = "YourSecurePassword123!"
+
+# Optional overrides
+instance_class      = "db.t3.micro"
+allocated_storage   = 20
+multi_az            = false
+skip_final_snapshot = true
+deletion_protection = false
+
+tags = {
+  Environment = "development"
+  Application = "myapp"
+  ManagedBy   = "terraform"
+}
