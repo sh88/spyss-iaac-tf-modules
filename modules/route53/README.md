@@ -16,7 +16,7 @@ module "route53" {
 
   hosted_zone_id          = "Z1234567890ABC"
   record_name             = "app"
-  alb_dns_name            = "my-alb-123456789.us-east-1.elb.amazonaws.com"
+  alb_dns_name            = "my-alb-123456789.ap-south-1.elb.amazonaws.com"
   alb_zone_id             = "Z35SXDOTRQ7X7K"
   evaluate_target_health  = true
 }

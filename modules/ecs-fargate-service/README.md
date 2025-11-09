@@ -20,7 +20,7 @@ module "ecs_fargate_service" {
   source = "../../modules/ecs-fargate-service"
 
   service_name     = "my-app"
-  cluster_id       = "arn:aws:ecs:us-east-1:123456789:cluster/dev"
+  cluster_id       = "arn:aws:ecs:ap-south-1:123456789:cluster/dev"
   vpc_id           = "vpc-xxxxx"
   subnet_ids       = ["subnet-xxxxx", "subnet-yyyyy"]
   alb_subnet_ids   = ["subnet-aaaaa", "subnet-bbbbb"]
