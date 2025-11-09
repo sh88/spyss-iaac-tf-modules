@@ -32,7 +32,7 @@ module "postgres" {
 }
 ```
 
-See [modules/rds-postgres/README.md](modules/rds-postgres/README.md) for detailed documentation.
+See [modules/rds-postgres/README.md](aws/rds-postgres/README.md) for detailed documentation.
 
 ## Examples
 
