@@ -1,71 +1,61 @@
-# Terraform IaaC Modules
+# spyss-iaac-tf-modules
 
-A centralized repository for reusable Terraform modules for AWS.
+Terraform modules for AWS infrastructure as code.
 
-## Overview
+## Available Modules
 
-This repository contains Infrastructure as Code (IaaC) modules built with Terraform for managing AWS resources. The modules are designed to be reusable, composable, and follow best practices.
+### RDS PostgreSQL Module
 
-## Repository Structure
+Creates an AWS RDS PostgreSQL database instance with minimal configuration that is accessible by ECS Fargate services.
 
-```
-spyss-iaac-tf-modules/
-├── aws/           # AWS-specific Terraform modules
-├── .gitignore     # Git ignore file for Terraform artifacts
-└── README.md      # This file
-```
+**Location**: `modules/rds-postgres`
 
-## Cloud Providers
+**Features**:
+- PostgreSQL RDS instance with sensible defaults
+- Dedicated security group with ingress rule for ECS Fargate access
+- DB subnet group for multi-AZ support
+- Storage encryption enabled by default
+- Automated backups with 7-day retention
+- CloudWatch logs export enabled
+- Auto-scaling storage support
 
-### AWS (Amazon Web Services)
-Modules for AWS resources are located in the `aws/` directory. See [aws/README.md](aws/README.md) for details.
-
-## Usage
-
-Each module contains its own README with usage instructions, input variables, and outputs. To use a module:
-
-1. Reference the module in your Terraform configuration
-2. Provide required input variables
-3. Configure the appropriate provider
-
-Example:
+**Quick Start**:
 ```hcl
-module "example" {
-  source = "git::https://github.com/sh88/spyss-iaac-tf-modules.git//aws/module-name?ref=v1.0.0"
-  
-  # Module-specific variables
-  name = "my-resource"
+module "postgres" {
+  source = "./modules/rds-postgres"
+
+  name                   = "myapp-db"
+  vpc_id                 = "vpc-xxxxx"
+  subnet_ids             = ["subnet-xxxxx", "subnet-yyyyy"]
+  ecs_security_group_id  = "sg-xxxxx"
+  master_password        = var.db_password
 }
 ```
 
-## Module Standards
+See [modules/rds-postgres/README.md](modules/rds-postgres/README.md) for detailed documentation.
 
-All modules in this repository follow these standards:
+## Examples
 
-- **Versioning**: Modules are versioned using Git tags
-- **Documentation**: Each module includes a README.md with usage examples
-- **Variables**: Input variables are clearly defined with descriptions and types
-- **Outputs**: Output values are documented and provide useful information
-- **Testing**: Modules should be tested before committing
+The `examples/` directory contains working examples for each module:
+
+- `examples/basic` - Basic RDS PostgreSQL setup
+
+## Usage
+
+1. Clone this repository
+2. Reference the modules in your Terraform configuration
+3. Provide required variables
+4. Run `terraform init`, `terraform plan`, and `terraform apply`
+
+## Requirements
+
+- Terraform >= 1.0
+- AWS Provider >= 4.0
 
 ## Contributing
 
-To contribute a new module or update an existing one:
+Contributions are welcome! Please open an issue or submit a pull request.
 
-1. Create a new branch for your changes
-2. Add or modify modules following the structure guidelines
-3. Update documentation
-4. Submit a pull request
+## License
 
-## Getting Started
-
-To start using these modules:
-
-1. Clone this repository
-2. Navigate to the AWS directory
-3. Review available modules
-4. Reference modules in your Terraform code
-
-## Support
-
-For issues or questions, please open an issue in this repository.
+MIT
