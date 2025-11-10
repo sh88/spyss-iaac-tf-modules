@@ -31,3 +31,6 @@ terraform.rc
 
 # Ignore lock files (optional, some teams prefer to commit this)
 # .terraform.lock.hcl
+
+.gitignore
+.idea/
