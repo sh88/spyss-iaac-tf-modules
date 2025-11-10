@@ -1,11 +1,11 @@
 # ECS Cluster Module
 
-This module creates an ECS cluster with Fargate capacity providers.
+This module creates an ECS cluster with Fargate Spot capacity provider.
 
 ## Features
 
 - ECS cluster with configurable name
-- Fargate and Fargate Spot capacity providers
+- Fargate Spot capacity provider (default)
 - Optional CloudWatch Container Insights
 - Tagging support
 
@@ -17,7 +17,7 @@ module "ecs_cluster" {
 
   cluster_name                = "dev"
   container_insights_enabled  = true
-  default_capacity_provider   = "FARGATE"
+  default_capacity_provider   = "FARGATE_SPOT"
 
   tags = {
     Environment = "dev"
@@ -32,7 +32,7 @@ module "ecs_cluster" {
 |------|-------------|------|---------|:--------:|
 | cluster_name | Name of the ECS cluster | `string` | `"dev"` | no |
 | container_insights_enabled | Enable CloudWatch Container Insights | `bool` | `true` | no |
-| default_capacity_provider | Default capacity provider (FARGATE or FARGATE_SPOT) | `string` | `"FARGATE"` | no |
+| default_capacity_provider | Default capacity provider (FARGATE_SPOT only) | `string` | `"FARGATE_SPOT"` | no |
 | tags | Tags to apply to resources | `map(string)` | `{}` | no |
 
 ## Outputs

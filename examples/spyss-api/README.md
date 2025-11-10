@@ -1,10 +1,10 @@
-# Complete Example
+# SPYSS API Example
 
-This example demonstrates how to use all modules together to create a complete ECS Fargate service with Route53 integration.
+This example demonstrates how to use all modules together to create a complete ECS Fargate service with Route53 integration using Fargate Spot.
 
 ## What This Example Creates
 
-- ECS cluster named "dev"
+- ECS cluster named "dev" with Fargate Spot capacity provider
 - ECS Fargate service with Application Load Balancer
 - Route53 DNS record pointing to the ALB
 - All necessary security groups and IAM roles

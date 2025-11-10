@@ -11,9 +11,9 @@ variable "container_insights_enabled" {
 }
 
 variable "default_capacity_provider" {
-  description = "Default capacity provider (FARGATE or FARGATE_SPOT)"
+  description = "Default capacity provider (FARGATE_SPOT only)"
   type        = string
-  default     = "FARGATE"
+  default     = "FARGATE_SPOT"
 }
 
 variable "tags" {

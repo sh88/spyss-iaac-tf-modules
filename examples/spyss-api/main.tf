@@ -1,6 +1,6 @@
-# Complete example showing how to use all modules together
+# SPYSS API example showing how to use all modules together
 # This example creates:
-# - ECS cluster named "dev"
+# - ECS cluster named "dev" with Fargate Spot
 # - ECS Fargate service with Application Load Balancer
 # - Route53 DNS record pointing to the ALB
 
@@ -43,13 +43,13 @@ data "aws_route53_zone" "this" {
   private_zone = false
 }
 
-# Create ECS cluster named "dev"
+# Create ECS cluster named "dev" with Fargate Spot
 module "ecs_cluster" {
   source = "../../modules/ecs-cluster"
 
   cluster_name                = "dev"
   container_insights_enabled  = true
-  default_capacity_provider   = "FARGATE"
+  default_capacity_provider   = "FARGATE_SPOT"
 
   tags = {
     Environment = "dev"
