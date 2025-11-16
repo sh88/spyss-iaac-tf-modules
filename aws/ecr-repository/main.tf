@@ -19,10 +19,10 @@ resource "aws_ecr_repository" "ecr_repository" {
     email        = var.email
   }
 }
-resource "aws_ecr_lifecycle_policy" ecr_lifecycle_repository {
+resource "aws_ecr_lifecycle_policy" "ecr_lifecycle_repository" {
   repository = var.service
 
-  policy     = <<EOF
+  policy = <<EOF
   {
   "rules": [
     {
@@ -40,7 +40,7 @@ resource "aws_ecr_lifecycle_policy" ecr_lifecycle_repository {
     },
     {
         "rulePriority": 2,
-        "description": "Retain last 2 images with tag prefix 'dev-'
+        "description": "Retain last 2 images with tag prefix 'dev-'",
         "selection": {
             "tagStatus": "tagged",
             "tagPrefixList": ["dev-"],
@@ -50,12 +50,12 @@ resource "aws_ecr_lifecycle_policy" ecr_lifecycle_repository {
         "action": {
             "type": "expire"
         }
-    }
+    },
     {
       "rulePriority": 3,
       "description": "Delele all other images after a day",
       "selection": {
-        "tagStatus": "any"
+        "tagStatus": "any",
         "countType": "sinceImagePushed",
         "countUnit": "days",
         "countNumber": 1
