@@ -34,7 +34,9 @@ resource "aws_ecr_repository_policy" "ecr_repository_policy" {
         {
             "Sid": "ecr_repository_policy_statement",
             "Effect": "Allow",
-            "Principal": "*",
+            "Principal": {
+                "AWS": "arn:aws:iam::982232989540:root"
+            },
             "Action": [
                 "ecr:GetDownloadUrlForLayer",
                 "ecr:BatchGetImage",
