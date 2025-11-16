@@ -20,6 +20,43 @@ resource "aws_ecr_repository" "ecr_repository" {
   }
 }
 
+resource "aws_ecr_repository" "foo" {
+  name = "bar"
+}
+
+resource "aws_ecr_repository_policy" "ecr_repository_policy" {
+  repository = var.service
+
+  policy = <<EOF
+{
+    "Version": "2008-10-17",
+    "Statement": [
+        {
+            "Sid": "ecr_repository_policy_statement",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:PutImage",
+                "ecr:InitiateLayerUpload",
+                "ecr:UploadLayerPart",
+                "ecr:CompleteLayerUpload",
+                "ecr:DescribeRepositories",
+                "ecr:GetRepositoryPolicy",
+                "ecr:ListImages",
+                "ecr:DeleteRepository",
+                "ecr:BatchDeleteImage",
+                "ecr:SetRepositoryPolicy",
+                "ecr:DeleteRepositoryPolicy"
+            ]
+        }
+    ]
+}
+EOF
+}
+
 resource "aws_ecr_lifecycle_policy" "ecr_lifecycle_repository" {
   depends_on = [aws_ecr_repository.ecr_repository]
   repository = var.service
