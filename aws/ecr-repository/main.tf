@@ -32,7 +32,7 @@ resource "aws_ecr_repository_policy" "ecr_repository_policy" {
     "Version": "2008-10-17",
     "Statement": [
         {
-            "Sid": "ecr_repository_policy_statement",
+            "Sid": "ecr_repository_policy_stmt",
             "Effect": "Allow",
             "Principal": {
                 "AWS": "arn:aws:iam::982232989540:root"
