@@ -19,7 +19,9 @@ resource "aws_ecr_repository" "ecr_repository" {
     email        = var.email
   }
 }
+
 resource "aws_ecr_lifecycle_policy" "ecr_lifecycle_repository" {
+  depends_on = [aws_ecr_repository.ecr_repository]
   repository = var.service
 
   policy = <<EOF
