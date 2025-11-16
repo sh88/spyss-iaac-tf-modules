@@ -4,13 +4,15 @@ resource "aws_ecr_repository" "ecr_repository" {
   name = var.ecr_repository_name
 
   image_tag_mutability = "MUTABLE"
+
   image_scanning_configuration {
     scan_on_push = var.ecr_scan_on_push
   }
 
   tags = {
     environment  = var.environment
-    project      = var.ecr_repository_name
+    service      = var.ecr_repository_name
+    organization = var.organization
     costcentre   = var.costcentre
     account_type = var.account_type
     created_by   = "terraform"

@@ -33,3 +33,8 @@ variable "ecr_scan_on_push" {
   type        = bool
   default     = false
 }
+
+variable "organization" {
+  description = "The organization name"
+  type        = string
+}
