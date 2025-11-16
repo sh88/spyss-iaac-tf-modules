@@ -20,10 +20,6 @@ resource "aws_ecr_repository" "ecr_repository" {
   }
 }
 
-resource "aws_ecr_repository" "foo" {
-  name = "bar"
-}
-
 resource "aws_ecr_repository_policy" "ecr_repository_policy" {
   repository = var.service
 
