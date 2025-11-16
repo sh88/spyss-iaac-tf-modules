@@ -19,6 +19,7 @@ resource "aws_ecr_repository" "ecr_repository" {
 }
 resource "aws_ecr_lifecycle_policy" ecr_lifecycle_repository {
   repository = var.ecr_repository_name
+
   policy     = <<EOF
   {
   "rules": [
