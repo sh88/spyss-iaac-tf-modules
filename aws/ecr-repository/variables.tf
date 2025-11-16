@@ -1,8 +1,3 @@
-variable "ecr_repository_name" {
-  description = "The name of the ECR repository"
-  type        = string
-}
-
 variable "environment" {
   description = "The deployment environment (e.g., dev, stg, prod)"
   type        = string
@@ -31,5 +26,10 @@ variable "ecr_scan_on_push" {
 
 variable "organization" {
   description = "The organization name"
+  type        = string
+}
+
+variable "service" {
+  description = "The name of the service"
   type        = string
 }

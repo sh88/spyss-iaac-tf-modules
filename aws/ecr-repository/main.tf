@@ -1,7 +1,7 @@
 # create a ecr repository to push images and add tags and lifecycle policy to retain last 2 images filtered by tag prefix "prod-"
 
 resource "aws_ecr_repository" "ecr_repository" {
-  name = var.ecr_repository_name
+  name = var.service
 
   image_tag_mutability = "MUTABLE"
 
@@ -11,7 +11,7 @@ resource "aws_ecr_repository" "ecr_repository" {
 
   tags = {
     environment  = var.environment
-    service      = var.ecr_repository_name
+    service      = var.service
     organization = var.organization
     costcentre   = var.costcentre
     account_type = var.account_type
@@ -20,7 +20,7 @@ resource "aws_ecr_repository" "ecr_repository" {
   }
 }
 resource "aws_ecr_lifecycle_policy" ecr_lifecycle_repository {
-  repository = var.ecr_repository_name
+  repository = var.service
 
   policy     = <<EOF
   {
