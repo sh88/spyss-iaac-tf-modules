@@ -1,44 +1,44 @@
 # ECS Task Definition
-resource "aws_ecs_task_definition" "this" {
-  family                   = var.service_name
-  network_mode             = "awsvpc"
-  requires_compatibilities = ["FARGATE"]
-  cpu                      = var.task_cpu
-  memory                   = var.task_memory
-  execution_role_arn       = aws_iam_role.ecs_execution_role.arn
-  task_role_arn            = aws_iam_role.ecs_task_role.arn
-
-  container_definitions = jsonencode([
-    {
-      name      = var.container_name
-      image     = var.container_image
-      essential = true
-      portMappings = [
-        {
-          containerPort = var.container_port
-          protocol      = "tcp"
-        }
-      ]
-      logConfiguration = {
-        logDriver = "awslogs"
-        options = {
-          "awslogs-group"         = aws_cloudwatch_log_group.this.name
-          "awslogs-region"        = var.aws_region
-          "awslogs-stream-prefix" = "ecs"
-        }
-      }
-      environment = var.environment_variables
-    }
-  ])
-
-  tags = var.tags
-}
+#resource "aws_ecs_task_definition" "this" {
+#  family                   = var.service_name
+#  network_mode             = "awsvpc"
+#  requires_compatibilities = ["FARGATE"]
+#  cpu                      = var.task_cpu
+#  memory                   = var.task_memory
+#  execution_role_arn       = aws_iam_role.ecs_execution_role.arn
+#  task_role_arn            = aws_iam_role.ecs_task_role.arn
+#
+#  container_definitions = jsonencode([
+#    {
+#      name      = var.container_name
+#      image     = var.container_image
+#      essential = true
+#      portMappings = [
+#        {
+#          containerPort = var.container_port
+#          protocol      = "tcp"
+#        }
+#      ]
+#      logConfiguration = {
+#        logDriver = "awslogs"
+#        options = {
+#          "awslogs-group"         = aws_cloudwatch_log_group.this.name
+#          "awslogs-region"        = var.aws_region
+#          "awslogs-stream-prefix" = "ecs"
+#        }
+#      }
+#      environment = var.environment_variables
+#    }
+#  ])
+#
+#  tags = var.tags
+#}
 
 # ECS Service
 resource "aws_ecs_service" "this" {
   name            = var.service_name
   cluster         = var.cluster_id
-  task_definition = aws_ecs_task_definition.this.arn
+#  task_definition = aws_ecs_task_definition.this.arn
   desired_count   = var.desired_count
   launch_type     = "FARGATE"
 
