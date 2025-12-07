@@ -90,3 +90,25 @@ resource "aws_db_instance" "postgres" {
     var.tags
   )
 }
+
+# create the alias name for rds postgres created above , so that it can be referred in other modules and it does not change when the actual rds instance is recreated, i want to use the rds cluster endpoint resource in an UI to create a datasource connection and UI should be able to connect to the database even if the actual rds instance is recreated and it is notjust read but it should be able to write to the database as well
+
+resource "aws_rds_cluster_endpoint" "postgres_writer" {
+  cluster_identifier = aws_db_instance.postgres.id
+  endpoint_type      = "WRITER"
+  custom_endpoint_type = "WRITER"
+  cluster_endpoint_identifier = "${var.name}-writer-endpoint"
+  tags = merge(
+    {
+      Name = "${var.name}-writer-endpoint"
+    },
+    var.tags
+  )
+}
+
+
+
+
+
+
+
