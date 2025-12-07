@@ -95,7 +95,6 @@ resource "aws_db_instance" "postgres" {
 
 resource "aws_rds_cluster_endpoint" "postgres_writer" {
   cluster_identifier = aws_db_instance.postgres.id
-  endpoint_type      = "WRITER"
   custom_endpoint_type = "WRITER"
   cluster_endpoint_identifier = "${var.name}-writer-endpoint"
   tags = merge(
