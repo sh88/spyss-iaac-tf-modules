@@ -5,4 +5,10 @@ resource aws_iam_user this {
   name     = each.value
 }
 
+resource "aws_iam_user_login_profile" "this" {
+  for_each                = toset(var.users)
+  user                    = each.value
+  password                = var.initial_password
+  password_reset_required = true
+}
 
