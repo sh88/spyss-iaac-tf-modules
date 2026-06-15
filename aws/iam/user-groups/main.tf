@@ -5,5 +5,3 @@ resource aws_iam_group this {
   name = each.value
   path = var.group_path
 }
-
-
