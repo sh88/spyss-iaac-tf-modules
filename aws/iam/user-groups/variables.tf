@@ -1,6 +1,6 @@
-variable "group_name" {
-  description = "The name of the IAM group."
-  type        = string
+variable "group_names" {
+    description = "The name of the IAM group."
+    type        = list(string)
 }
 
 variable "group_path" {
