@@ -154,3 +154,9 @@ variable "aws_region" {
   description = "AWS region to deploy resources"
   type        = string
 }
+
+variable "enable_execute_command" {
+  description = "Enable ECS Exec for the service"
+  type        = bool
+  default     = false
+}

@@ -41,6 +41,7 @@ resource "aws_ecs_service" "this" {
   task_definition = "arn:aws:ecs:ap-south-1:982232989540:task-definition/spyss-api-service:21"
   desired_count   = var.desired_count
   launch_type     = "FARGATE"
+  enable_execute_command = var.enable_execute_command
 
   network_configuration {
     subnets          = var.subnet_ids
