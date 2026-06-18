@@ -38,7 +38,7 @@
 resource "aws_ecs_service" "this" {
   name            = var.service_name
   cluster         = var.cluster_id
-  task_definition = "arn:aws:ecs:ap-south-1:982232989540:task-definition/spyss-api-service:21"
+  task_definition = "arn:aws:ecs:ap-south-1:982232989540:task-definition/spyss-api-service:24"
   desired_count   = var.desired_count
   launch_type     = "FARGATE"
   enable_execute_command = var.enable_execute_command
