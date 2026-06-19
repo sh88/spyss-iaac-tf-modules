@@ -160,3 +160,9 @@ variable "enable_execute_command" {
   type        = bool
   default     = false
 }
+
+variable "certificate_arn" {
+  description = "ARN of the SSL certificate for HTTPS listener (optional)"
+  type        = string
+  default     = "arn:aws:acm:ap-south-1:982232989540:certificate/1dbdcd13-6e66-4f0a-afd2-bc0368d0e965"
+}
