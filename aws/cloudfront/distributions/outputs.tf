@@ -30,8 +30,8 @@ output "status" {
   value       = aws_cloudfront_distribution.main.status
 }
 
-output "invalidation_id" {
-  description = "The ID of the cache invalidation request"
-  value       = try(aws_cloudfront_invalidation.main[0].id, null)
-}
+# output "invalidation_id" {
+#   description = "The ID of the cache invalidation request"
+#   value       = try(aws_cloudfront_invalidation.main[0].id, null)
+# }
 
