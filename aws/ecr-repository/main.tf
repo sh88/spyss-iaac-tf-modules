@@ -92,12 +92,11 @@ resource "aws_ecr_lifecycle_policy" "ecr_lifecycle_repository" {
     },
     {
       "rulePriority": 3,
-      "description": "Delele all other images after a day",
+      "description": "Retain only last 2 images with no tags",
       "selection": {
         "tagStatus": "any",
-        "countType": "sinceImagePushed",
-        "countUnit": "days",
-        "countNumber": 1
+        "countType": "imageCountMoreThan",
+        "countNumber": 2
       },
       "action": {
         "type": "expire"
